@@ -3,7 +3,7 @@
     "info": {
         "title": "Demo API",
         "version": "1.0",
-        "description": "Just a simple demo API design."
+        "description": "Just a simple demo API design!"
     },
     "paths": {
         "/mice": {
