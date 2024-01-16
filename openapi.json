@@ -3,6 +3,133 @@
     "info": {
         "title": "Demo API",
         "version": "1.0",
-        "description": "Just a simple demo API design."
+        "description": "Just a simple demo API design!"
+    },
+    "paths": {
+        "/mice": {
+            "summary": "Path used to manage the list of mice.",
+            "description": "The REST endpoint/path used to list and create zero or more `Mouse` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Mouse"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Mouse` entities."
+                    }
+                },
+                "operationId": "getMice",
+                "summary": "List All Mice",
+                "description": "Gets a list of all `Mouse` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Mouse` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Mouse"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createMouse",
+                "summary": "Create a Mouse",
+                "description": "Creates a new instance of a `Mouse`."
+            }
+        },
+        "/mice/{mouseId}": {
+            "summary": "Path used to manage a single Mouse.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Mouse`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Mouse"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Mouse`."
+                    }
+                },
+                "operationId": "getMouse",
+                "summary": "Get a Mouse",
+                "description": "Gets the details of a single instance of a `Mouse`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Mouse` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Mouse"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateMouse",
+                "summary": "Update a Mouse",
+                "description": "Updates an existing `Mouse`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteMouse",
+                "summary": "Delete a Mouse",
+                "description": "Deletes an existing `Mouse`."
+            },
+            "parameters": [
+                {
+                    "name": "mouseId",
+                    "description": "A unique identifier for a `Mouse`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Mouse": {
+                "title": "Root Type for Mouse",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "type": "Field"
+                }
+            }
+        }
     }
 }
